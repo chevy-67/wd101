@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <h1>Please Register to Continue...</h1>
+    <div class="box">
+        <form id="form">
+            <label for="name">Name : </label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">E-mail ID : </label>
+            <input type="email" required id="email" name="email"><br>
+            <label for="pass">Password : </label>
+            <input type="password" name="password" id="pass" required><br>
+            <label for="dob">DOB : </label>
+            <input type="date" id="dob"><br>
+            <input type="checkbox" name="tc" id="tc">
+            <label for="tc">Accept Terms and Conditions</label><br>
+            <button type="submit" id="submit">Submit</button>
+        </form>
+    </div>
+    <div id="user_entries"></div>
+    <script src="index.js"></script>
+</body>
+</html>
