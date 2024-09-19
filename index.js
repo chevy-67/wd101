@@ -1,12 +1,12 @@
-document.addEventListener("DOMContentLoaded",()=>{
-    const today =new Date();
-    const mindate=new Date(today.getFullYear()-55,today.getMonth(),today.getDate()).toISOString().split('T')[0];
-    const maxdate=new Date(today.getFullYear()-18,today.getMonth(),today.getDate()).toISOString().split('T')[0];
-   
-   const dob=document.getElementById("dob");
-   dob.setAttribute("min",mindate);
-   dob.setAttribute("max",maxdate);
-   displayEntries();
+document.addEventListener("DOMContentLoaded", () => {
+    const today = new Date();
+    const mindate = new Date(today.getFullYear() - 55, today.getMonth(), today.getDate()).toISOString().split('T')[0];
+    const maxdate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate()).toISOString().split('T')[0];
+
+    const dob = document.getElementById("dob");
+    dob.setAttribute("min", mindate);
+    dob.setAttribute("max", maxdate);
+    dispEnt();
 });
 
 let userForm = document.getElementById("form");
@@ -15,11 +15,10 @@ let userForm = document.getElementById("form");
 let retEnt = () => {
     let ent = localStorage.getItem("form");
     if (ent) {
-        return JSON.parse(ent); // Parse the localStorage entry
+        return JSON.parse(ent);
     } else {
-        return []; // Return an empty array if no data is found
+        return [];
     }
-    //return ent;
 };
 
 let data = retEnt(); // Initialize data from localStorage
@@ -27,9 +26,7 @@ let data = retEnt(); // Initialize data from localStorage
 // Display the table of entries
 const dispEnt = () => {
     const entries = retEnt();
-  
 
-    // Map through the entries and create table rows
     const tableEntries = entries.map((entry) => {
         const nameCell = `<td class='border px-4 py-2'>${entry.name}</td>`;
         const emailCell = `<td class='border px-4 py-2'>${entry.email}</td>`;
@@ -41,7 +38,6 @@ const dispEnt = () => {
         return row;
     }).join("\n");
 
-    
     const table = `<table class="table-auto w-full">
     <thead>
       <tr>
@@ -76,42 +72,46 @@ function getInfo(event) {
         tc
     };
 
-    if(!validAge()){
-        alert("Age must between 18 and 55");
+    if (!validAge()) {
+        alert("Age must be between 18 and 55");
         return;
     }
-    if(!validemail){
-        alert("Please Enter valid Email");
+    if (!validemail(email)) {
+        alert("Please enter a valid email");
         return;
     }
+
     let data = retEnt();
-    data.push(userData); // Add new user data to the array
-    localStorage.setItem("form", JSON.stringify(data)); // Store the data in localStorage
+    data.push(userData);
+    localStorage.setItem("form", JSON.stringify(data)); // Store in localStorage
     dispEnt(); // Refresh the display
 }
 
-
-const validAge = () =>{
-    const dobInput  = document.getElementById("dob").value;
-    if(!dobInput){
+// Validate the age
+const validAge = () => {
+    const dobInput = document.getElementById("dob").value;
+    if (!dobInput) {
         return false;
     }
     let today = new Date();
     let dob = new Date(dobInput);
     let ageDiff = today.getFullYear() - dob.getFullYear();
-    const monthDifference = today.getMonth();
-    const dayDifference = today.getDay();
+    const monthDifference = today.getMonth() - dob.getMonth();
+    const dayDifference = today.getDate() - dob.getDate();
+
     if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
-        age--;
+        ageDiff--;
     }
-    return (ageDiff>=18 && ageDiff<=55);
-     
+
+    return ageDiff >= 18 && ageDiff <= 55;
 }
 
-const validemail =()=>{
-const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-return regex.test(email);
+// Validate the email format
+const validemail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
 }
+
 // Add submit event listener to the form
 userForm.addEventListener("submit", getInfo);
 
