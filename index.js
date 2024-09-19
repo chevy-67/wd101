@@ -34,7 +34,7 @@ const dispEnt = () => {
         const passwordCell = `<td class='border px-4 py-2'>${entry.password}</td>`;
         const acceptTermsCell = `<td class='border px-4 py-2'>${entry.tc}</td>`;
 
-        const row = `<tr> ${nameCell} ${emailCell} ${dobCell} ${passwordCell} ${acceptTermsCell}</tr>`;
+        const row = `<tr> ${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptTermsCell}</tr>`;
         return row;
     }).join("\n");
 
@@ -43,8 +43,8 @@ const dispEnt = () => {
       <tr>
         <th class="px-4 py-2">Name</th>
         <th class="px-4 py-2">Email</th>
-        <th class="px-4 py-2">Dob</th>
         <th class="px-4 py-2">Password</th>
+        <th class="px-4 py-2">Dob</th>
         <th class="px-4 py-2">Accepted terms?</th>
       </tr>
     </thead>
