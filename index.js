@@ -1,3 +1,14 @@
+document.addEventListener("DOMContentLoaded",()=>{
+    const today =new Date();
+    const mindate=new Date(today.getFullYear()-55,today.getMonth(),today.getDate()).toISOString().split('T')[0];
+    const maxdate=new Date(today.getFullYear()-18,today.getMonth(),today.getDate()).toISOString().split('T')[0];
+   
+   const dob=document.getElementById("dob");
+   dob.setAttribute("min",mindate);
+   dob.setAttribute("max",maxdate);
+   displayEntries();
+});
+
 let userForm = document.getElementById("form");
 
 // Retrieve entries from localStorage
@@ -69,6 +80,10 @@ function getInfo(event) {
         alert("Age must between 18 and 55");
         return;
     }
+    if(!validemail){
+        alert("Please Enter valid Email");
+        return;
+    }
     let data = retEnt();
     data.push(userData); // Add new user data to the array
     localStorage.setItem("form", JSON.stringify(data)); // Store the data in localStorage
@@ -84,8 +99,18 @@ const validAge = () =>{
     let today = new Date();
     let dob = new Date(dobInput);
     let ageDiff = today.getFullYear() - dob.getFullYear();
+    const monthDifference = today.getMonth();
+    const dayDifference = today.getDay();
+    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+        age--;
+    }
     return (ageDiff>=18 && ageDiff<=55);
      
+}
+
+const validemail =()=>{
+const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+return regex.test(email);
 }
 // Add submit event listener to the form
 userForm.addEventListener("submit", getInfo);

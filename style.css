@@ -48,3 +48,31 @@ form{
     background-color: antiquewhite;
     margin-top: 5%;
 }
+
+.mx-auto h2{
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+#userEntries table{
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#user_entries th {
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#user_entries td{
+    text-align: left;
+    padding: 10px;
+    border: 1px solid black;
+}
+
