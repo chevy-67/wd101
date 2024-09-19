@@ -60,7 +60,7 @@ function getInfo(event) {
 
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
-    const password = document.getElementById("pass").value;
+    const password = document.getElementById("password").value;
     const dob = document.getElementById("dob").value;
     const tc = document.getElementById("tc").checked;
 
